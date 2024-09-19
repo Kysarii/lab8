@@ -41,7 +41,7 @@ class TariffManager:
                     tariff_name, customer, service_type = line.strip().split(",")
                     self.tariffs.append(Tariff(tariff_name, customer, service_type))
         except FileNotFoundError:
-            print("Неверный формат данных")
+            print("Файл в данной директория не найден.")
 
     
     def segment_by_customer(self):
