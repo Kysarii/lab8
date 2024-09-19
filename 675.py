@@ -18,22 +18,22 @@ from tkinter import ttk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Класс Tariff, представляющий телефонный тариф
+
 class Tariff:
     def __init__(self, tariff_name, customer, service_type):
-        self.tariff_name = tariff_name  # Название тарифа
-        self.customer = customer  # Заказчик
-        self.service_type = service_type  # Тип услуги
+        self.tariff_name = tariff_name  
+        self.customer = customer  
+        self.service_type = service_type  
 
 
-# Класс для обработки тарифов
+
 class TariffManager:
     def __init__(self):
-        self.tariffs = []  # Список для хранения всех тарифов
+        self.tariffs = []  
         self.load_data()
         self.create_gui()
 
-    # Метод загрузки данных из файла
+    
     def load_data(self):
         try:
             with open("tariffs.txt", "r", encoding='cp1251') as file:
@@ -43,7 +43,7 @@ class TariffManager:
         except FileNotFoundError:
             print("Неверный формат данных")
 
-    # Сегментация тарифов по заказчикам
+    
     def segment_by_customer(self):
         customer_count = {}
         for tariff in self.tariffs:
@@ -53,7 +53,7 @@ class TariffManager:
                 customer_count[tariff.customer] = 1
         return customer_count
 
-    # Сегментация тарифов по видам услуг
+    
     def segment_by_service_type(self):
         service_count = {}
         for tariff in self.tariffs:
@@ -77,11 +77,11 @@ class TariffManager:
 
         self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
-        # Рамка для кнопок и отображения данных
+        
         self.main_frame = tk.Frame(self.root)
         self.main_frame.pack(pady=10)
 
-        # Кнопки
+        
 
         self.segment_by_customer_button = ttk.Button(self.main_frame, text="Сегментация по заказчикам", command=self.show_customer_data)
         self.segment_by_customer_button.pack(side=tk.LEFT, padx=10, pady = 20)
@@ -89,7 +89,7 @@ class TariffManager:
         self.segment_by_service_button = ttk.Button(self.main_frame, text="Сегментация по типам услуг", command=self.show_service_data)
         self.segment_by_service_button.pack(side=tk.LEFT, padx=10, pady = 20)
 
-        # Рамка для диаграммы
+       
         self.chart_frame = tk.Frame(self.root)
         self.chart_frame.pack(pady=10)
         self.root.mainloop()
